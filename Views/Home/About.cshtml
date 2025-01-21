@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Documentación de la API";
+}
+<main aria-labelledby="title">
+    <div class="container">
+        <h2 id="title">@ViewBag.Title</h2>
+
+        <p>Bienvenido a la documentación de nuestra API. Aquí podrás encontrar todos los detalles sobre cómo interactuar con nuestros servicios y los puntos finales disponibles.</p>
+
+        <hr>
+
+        <section>
+            <h4>Introducción</h4>
+            <p>Esta API permite gestionar tareas, con funcionalidades para agregar, editar, eliminar y listar tareas. Los puntos finales están organizados para permitirte interactuar de forma eficiente con los datos.</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h4>Puntos Finales</h4>
+            <div class="list-group">
+                <div class="list-group-item">
+                    <h5 class="mb-1">GET /api/tareas</h5>
+                    <p class="mb-1">Obtiene una lista de todas las tareas disponibles.</p>
+                    <small class="text-muted">Método: GET</small>
+                </div>
+                <div class="list-group-item">
+                    <h5 class="mb-1">POST /api/tareas</h5>
+                    <p class="mb-1">Crea una nueva tarea en el sistema.</p>
+                    <small class="text-muted">Método: POST</small>
+                    <pre><code>{
+  "description": "Tarea pendiente",
+  "dueDate": "2025-01-31",
+  "status": "Pendiente"
+}</code></pre>
+                </div>
+                <div class="list-group-item">
+                    <h5 class="mb-1">PUT /api/tareas/{id}</h5>
+                    <p class="mb-1">Actualiza los detalles de una tarea específica.</p>
+                    <small class="text-muted">Método: PUT</small>
+                    <pre><code>{
+  "description": "Tarea completada",
+  "dueDate": "2025-01-25",
+  "status": "Completado"
+}</code></pre>
+                </div>
+                <div class="list-group-item">
+                    <h5 class="mb-1">DELETE /api/tareas/{id}</h5>
+                    <p class="mb-1">Elimina una tarea específica del sistema.</p>
+                    <small class="text-muted">Método: DELETE</small>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h4>Ejemplo de Respuesta</h4>
+            <p>A continuación, se muestra un ejemplo de la respuesta que recibirás después de realizar una solicitud exitosa a la API:</p>
+            <pre><code>{
+  "id": 1,
+  "description": "Tarea pendiente",
+  "dueDate": "2025-01-31",
+  "status": "Pendiente"
+}</code></pre>
+        </section>
+
+        <hr>
+
+        <section>
+            <h4>Códigos de Error</h4>
+            <p>Estos son algunos de los códigos de error que podrías recibir al interactuar con nuestra API:</p>
+            <ul class="list-group">
+                <li class="list-group-item">400 Bad Request: La solicitud no es válida o está incompleta.</li>
+                <li class="list-group-item">404 Not Found: El recurso solicitado no fue encontrado.</li>
+                <li class="list-group-item">500 Internal Server Error: Hubo un error en el servidor.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h4>Autenticación</h4>
+            <p>La API requiere autenticación mediante token para acceder a los recursos protegidos. Para obtener un token, realiza una solicitud a <code>/api/auth/login</code> con tus credenciales.</p>
+            <pre><code>{
+  "username": "usuario",
+  "password": "contraseña"
+}</code></pre>
+        </section>
+    </div>
+</main>

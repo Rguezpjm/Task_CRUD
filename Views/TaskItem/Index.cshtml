@@ -1,0 +1,66 @@
+﻿@model List<Task_CRUD.Models.ViewModels.ListTablaViewModel>
+
+@{
+    ViewBag.Title = "Gestión de Tareas";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Guardar", "Tabla", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tablaData" class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nuevo</td>
+                        <td>
+                            <input type="text" name="tablaData[0].Description" class="form-control description" placeholder="Ejemplo: Tarea pendiente" />
+                        </td>
+                        <td>
+                            <input type="text" name="tablaData[0].DueDate" class="form-control due-date datepicker" placeholder="Selecciona una fecha" />
+                        </td>
+                        <td>
+                            <select name="tablaData[0].Status" class="form-control status">
+                                <option value="" disabled selected>Selecciona un estado</option>
+                                <option value="Completado">Completado</option>
+                                <option value="Progreso">Progreso</option>
+                                <option value="Pendiente">Pendiente</option>
+                            </select>
+                        </td>
+                        <td><button type="submit" class="btn btn-primary">Agregar</button></td>
+                    </tr>
+
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td>@Model[i].Id</td>
+                            <td><input type="text" name="tablaData[@i].Description" class="form-control description" value="@Model[i].Description" /></td>
+                            <td><input type="text" name="tablaData[@i].DueDate" class="form-control due-date datepicker" value="@Model[i].DueDate.ToString("yyyy-MM-dd")" /></td>
+                            <td>
+                                <select name="tablaData[@i].Status" class="form-control status">
+                                    <option value="Completado" @(Model[i].Status == "Completado" ? "selected" : "")>Completado</option>
+                                    <option value="Progreso" @(Model[i].Status == "Progreso" ? "selected" : "")>Progreso</option>
+                                    <option value="Pendiente" @(Model[i].Status == "Pendiente" ? "selected" : "")>Pendiente</option>
+                                </select>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Eliminar", "Tabla", new { id = Model[i].Id })" class="btn btn-danger">Eliminar</a>
+                                <a href="@Url.Action("Guardar", "Tabla", new { id = Model[i].Id })" class="btn btn-warning">Modificar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
